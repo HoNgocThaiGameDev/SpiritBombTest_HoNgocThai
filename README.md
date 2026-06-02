@@ -239,4 +239,4 @@ Các phần mình trực tiếp quyết định và test:
 - Điều chỉnh wave, boss HP, energy cost, vibration, sound và save data.
 - Build APK cuối để nộp.
 
-AI giúp mình làm nhanh hơn ở các việc rà soát và sửa lỗi lặp lại, nhất là khi phải kiểm tra nhiều scene và nhiều reference trong Unity. Tuy vậy các phần cảm giác chơi, UI có bị che hay không, wave có rõ hay không thì vẫn phải mở Unity lên test trực tiếp mới chắc. Mình xem AI như công cụ hỗ trợ code/debug, còn quyết định cuối cùng dựa trên việc chạy project thật.
+Mình xem AI như một QA làm việc cùng mình trong quá trình làm bài. AI hỗ trợ mình rà lại logic, tìm edge case, nhắc các lỗi dễ sót và gợi ý hướng refactor khi project có nhiều scene/reference cần kiểm tra. Tuy vậy phần lớn task vẫn do mình xử lý trực tiếp, đặc biệt là thiết kế gameplay, chỉnh gamefeel, quyết định UI/flow và test lại cảm giác chơi trong Unity. Quyết định cuối cùng vẫn dựa trên việc mình chạy project thật và chỉnh lại theo trải nghiệm khi chơi.
