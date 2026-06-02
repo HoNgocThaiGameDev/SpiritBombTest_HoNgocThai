@@ -133,6 +133,8 @@ Các màn chính đã có UI:
 
 Gameplay HUD có máu player, score, hit, số lượng vật phẩm hỗ trợ còn lại và boss HP khi boss xuất hiện. Số lượng vật phẩm hỗ trợ được cập nhật ngay sau khi dùng.
 
+Phần UI có dùng lại một số animation em đã làm ở các dự án trước rồi chỉnh lại cho bài demo này, ví dụ animation tổng kết/xếp hạng số sao sau khi hoàn thành level.
+
 Âm thanh đã gắn cho menu, gameplay, click button, khiên, win và game over. Android vibration cũng đã thêm qua script `Vibration`, dùng theo setting của người chơi.
 
 ## Cấu Trúc Project
@@ -189,7 +191,7 @@ LogicTest_SpiritBomb_HoNgocThai.apk
 
 ## Known Issues
 
-Phần mình thấy còn có thể làm tốt hơn là UI. Hiện tại các panel, dialog và popup vẫn đang được quản lý bằng nhiều script riêng theo từng màn, nên khi mở rộng thêm popup mới thì code dễ bị rời rạc. Nếu có thêm thời gian, mình muốn thêm một framework nhỏ cho UI để quản lý dialog/popup tập trung hơn, ví dụ có popup stack, base dialog, open/close transition chung và cách truyền data rõ ràng hơn.
+Phần em thấy còn có thể làm tốt hơn là UI. Hiện tại các panel, dialog và popup vẫn đang được quản lý bằng nhiều script riêng theo từng màn, nên khi mở rộng thêm popup mới thì code dễ bị rời rạc. Nếu có thêm thời gian, em muốn thêm một framework nhỏ cho UI để quản lý dialog/popup tập trung hơn, ví dụ có popup stack, base dialog, open/close transition chung và cách truyền data rõ ràng hơn.
 
 ## Third-party Assets / Tools
 
@@ -206,7 +208,7 @@ Các asset này được dùng cho phạm vi technical test. Nếu dùng project
 
 ## AI Usage Declaration
 
-Mình có sử dụng ChatGPT/Codex trong quá trình làm bài.
+Em có sử dụng ChatGPT/Codex trong quá trình làm bài.
 
 Các phần có AI hỗ trợ:
 
@@ -216,10 +218,10 @@ Các phần có AI hỗ trợ:
 - Dùng Lyria AI của Google để gen một số file âm thanh cho trò chơi.
 - Hỗ trợ viết README.
 
-Các phần mình trực tiếp quyết định và test:
+Các phần em trực tiếp quyết định và test:
 
 - Lên plan để gamefeel của trò chơi tốt hơn.
 - Test các flow chính trong Unity: boot, menu, select level, gameplay, win/lose, upgrade và vật phẩm hỗ trợ.
 - Điều chỉnh wave, boss HP, energy cost, vibration, sound và save data.
 
-Mình xem AI như một QA làm việc cùng mình trong quá trình làm bài. AI hỗ trợ mình rà lại logic, tìm edge case, nhắc các lỗi dễ sót và gợi ý hướng refactor khi project có nhiều scene/reference cần kiểm tra. Tuy vậy phần lớn task vẫn do mình xử lý trực tiếp, đặc biệt là thiết kế gameplay, chỉnh gamefeel, quyết định UI/flow và test lại cảm giác chơi trong Unity. Quyết định cuối cùng vẫn dựa trên việc mình chạy project thật và chỉnh lại theo trải nghiệm khi chơi.
+Em xem AI như một QA làm việc cùng em trong quá trình làm bài. AI hỗ trợ em rà lại logic, tìm edge case, nhắc các lỗi dễ sót và gợi ý hướng refactor khi project có nhiều scene/reference cần kiểm tra. Tuy vậy phần lớn task vẫn do em xử lý trực tiếp, đặc biệt là thiết kế gameplay, chỉnh gamefeel, quyết định UI/flow và test lại cảm giác chơi trong Unity. Quyết định cuối cùng vẫn dựa trên việc em chạy project thật và chỉnh lại theo trải nghiệm khi chơi.
