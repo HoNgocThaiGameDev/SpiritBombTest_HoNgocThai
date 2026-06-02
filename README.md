@@ -11,6 +11,7 @@ Mục tiêu của em là làm một bản nhỏ nhưng chơi được trọn flo
 - Code: C#
 - Scene bắt đầu để test: `Assets/Scenes/BootLoader.unity`
 - File APK đã build: `LogicTest_SpiritBomb_HoNgocThai.apk`
+- Video demo gameplay: [Google Drive](https://drive.google.com/file/d/1Ro0J8y5TxCsQDoQrFshObsAJ6kfhx_kF/view?usp=drivesdk)
 - Save data: PlayerPrefs dạng JSON, schema hiện tại là `5`
 
 ## Cách Chạy Project
