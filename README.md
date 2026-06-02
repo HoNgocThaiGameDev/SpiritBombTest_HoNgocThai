@@ -219,6 +219,5 @@ Các phần mình trực tiếp quyết định và test:
 - Lên plan để gamefeel của trò chơi tốt hơn.
 - Test các flow chính trong Unity: boot, menu, select level, gameplay, win/lose, upgrade và boost.
 - Điều chỉnh wave, boss HP, energy cost, vibration, sound và save data.
-- Build APK cuối để nộp.
 
 Mình xem AI như một QA làm việc cùng mình trong quá trình làm bài. AI hỗ trợ mình rà lại logic, tìm edge case, nhắc các lỗi dễ sót và gợi ý hướng refactor khi project có nhiều scene/reference cần kiểm tra. Tuy vậy phần lớn task vẫn do mình xử lý trực tiếp, đặc biệt là thiết kế gameplay, chỉnh gamefeel, quyết định UI/flow và test lại cảm giác chơi trong Unity. Quyết định cuối cùng vẫn dựa trên việc mình chạy project thật và chỉnh lại theo trải nghiệm khi chơi.
