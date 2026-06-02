@@ -4,7 +4,7 @@
 
 Game thuộc thể loại 2D vertical scrolling space shooter, có pha trộn một chút bullet hell nhẹ. Người chơi điều khiển máy bay trong màn hình cuộn dọc, né đạn, bắn enemy theo từng wave và dùng thêm các vật phẩm hỗ trợ như tên lửa, khiên và máy bay phụ trợ để qua màn.
 
-Em làm project bằng Unity `2022.3.62f2` và build chính cho Android. Mục tiêu của em là làm một bản nhỏ nhưng chơi được trọn flow: mở game, vào menu, chọn level, chơi combat, thắng/thua, lưu tiến trình và có cảm giác va chạm/hiệu ứng/âm thanh tương đối rõ.
+Gameplay tập trung vào nhịp chơi nhanh, dễ hiểu: vào màn, sống sót qua các đợt enemy, tận dụng vật phẩm hỗ trợ đúng lúc và đánh boss ở cuối màn. Mục tiêu của em là làm một bản demo nhỏ nhưng có đủ flow hoàn chỉnh, có tiến trình lưu lại, có cảm giác bắn/né rõ ràng và có đủ hiệu ứng, âm thanh để trận đấu không bị khô.
 
 ## Thông Tin Cơ Bản
 
