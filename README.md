@@ -117,8 +117,6 @@ Dữ liệu lưu gồm:
 - Level upgrade của plane và boost
 - Setting sound/vibration
 
-Phần save đã được dọn lại để bỏ các field không dùng nữa như `timeX2Coin`, `timeSaveX2Coin`, `controlType` và `totalHighScore`.
-
 ### UI Và Âm Thanh
 
 Các màn chính đã có UI:
