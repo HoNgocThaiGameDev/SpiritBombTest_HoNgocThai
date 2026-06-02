@@ -186,6 +186,10 @@ LogicTest_SpiritBomb_HoNgocThai.apk
 [SB] Unity Technical Test.pdf
 ```
 
+## Known Issues
+
+Phần mình thấy còn có thể làm tốt hơn là UI. Hiện tại các panel, dialog và popup vẫn đang được quản lý bằng nhiều script riêng theo từng màn, nên khi mở rộng thêm popup mới thì code dễ bị rời rạc. Nếu có thêm thời gian, mình muốn thêm một framework nhỏ cho UI để quản lý dialog/popup tập trung hơn, ví dụ có popup stack, base dialog, open/close transition chung và cách truyền data rõ ràng hơn.
+
 ## Third-party Assets / Tools
 
 Project có dùng một số asset/tool có sẵn:
