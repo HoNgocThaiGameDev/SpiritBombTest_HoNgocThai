@@ -189,24 +189,6 @@ LogicTest_SpiritBomb_HoNgocThai.apk
 [SB] Unity Technical Test.pdf
 ```
 
-## Một Số Điểm Code Đã Dọn
-
-Trong lúc hoàn thiện bài, mình có dọn lại một số phần để project dễ đọc hơn:
-
-- Gom chuyển scene vào `SceneFlowService`.
-- Dùng `BootLoader` làm điểm khởi tạo service chính.
-- Đưa config gameplay về ScriptableObject để dễ chỉnh plane, enemy, level và wave.
-- Sửa pool để object preload luôn inactive, tránh lỗi đạn/tên lửa tự chạy khi vừa vào game.
-- Tách bớt save/progress/settings qua service thay vì gọi PlayerPrefs rải rác.
-- Dọn reference thừa, SDK không dùng, cache build và file tạm trước khi đưa lên GitHub.
-
-## Known Issues
-
-- APK hiện đang để ở root project theo yêu cầu gửi kèm, chưa tách riêng vào thư mục `Build/`.
-- Chưa kèm video gameplay trong repo.
-- Một vài script gameplay vẫn còn khá dài, ví dụ `MyPlaneController`, `EnemyControl`, `GamePlayEventListener`. Mình đã dọn những phần ảnh hưởng trực tiếp đến runtime trước, nhưng nếu có thêm thời gian thì đây là phần nên tách tiếp.
-- Một số asset pack UI/FX vẫn giữ lại vì còn được scene hoặc prefab tham chiếu.
-
 ## Third-party Assets / Tools
 
 Project có dùng một số asset/tool có sẵn:
