@@ -142,7 +142,6 @@ Gameplay HUD có máu player, score, hit, boost count và boss HP khi boss xuấ
 Assets/
   AdvancedPlayerPrefsWindow/      Tool để xem/chỉnh PlayerPrefs trong Editor
   Animation/                      AnimationClip và Animator Controller
-  Editor/                         Một số tool audit scene dùng trong quá trình dọn project
   FX/                             Hiệu ứng nổ, shield, particle, material
   Font/                           Font dùng cho UI
   Prefabs/                        Prefab dùng chung
