@@ -228,12 +228,13 @@ Các phần có AI hỗ trợ:
 
 - Rà code và tìm lỗi logic trong gameplay/UI.
 - Gợi ý và hỗ trợ refactor một số phần như scene flow, object pool, save data và config ScriptableObject.
-- Hỗ trợ tìm reference thừa, SDK cũ, file cache, file tạm trước khi đưa source lên GitHub.
+- Dùng GPT để gen ảnh/sprite, sau đó dùng Photoshop để xóa phông và điều chỉnh lại kích thước cho phù hợp với game.
+- Dùng Lyria AI của Google để gen một số file âm thanh cho trò chơi.
 - Hỗ trợ viết README.
 
 Các phần mình trực tiếp quyết định và test:
 
-- Chọn sprite, âm thanh, UI layout và cảm giác gameplay.
+- Lên plan để gamefeel của trò chơi tốt hơn.
 - Test các flow chính trong Unity: boot, menu, select level, gameplay, win/lose, upgrade và boost.
 - Điều chỉnh wave, boss HP, energy cost, vibration, sound và save data.
 - Build APK cuối để nộp.
