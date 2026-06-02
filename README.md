@@ -195,7 +195,7 @@ LogicTest_SpiritBomb_HoNgocThai.apk
 
 Vì em phải dành thời gian tìm hiểu gameplay của dòng space shooter, đặc biệt là nhịp wave, cảm giác bắn, boss và các vật phẩm hỗ trợ, nên phần UI chưa kịp refactor lại rõ ràng như mong muốn. Hiện tại các panel, dialog và popup vẫn đang được quản lý bằng nhiều script riêng theo từng màn. Nếu có thêm thời gian, em muốn tách lại cấu trúc UI clean hơn, có framework nhỏ để quản lý dialog/popup tập trung hơn, ví dụ popup stack, base dialog và open/close transition chung.
 
-Ngoài UI, phần em thấy còn có thể cải thiện thêm là balancing và mở rộng nội dung gameplay. Hiện game đã có 3 level, 2 loại enemy thường và 1 boss để demo trọn flow, nhưng nếu có thêm thời gian em muốn bổ sung thêm enemy behavior, boss phase và nhiều pattern đạn hơn. Một số script gameplay chính vẫn còn khá lớn vì em ưu tiên ổn định runtime và gamefeel trước, sau đó mới tách nhỏ tiếp để code dễ bảo trì hơn.
+Ngoài UI, phần em thấy còn có thể cải thiện thêm là balancing và mở rộng nội dung gameplay. Hiện game đã có 3 level, 2 loại enemy thường và 1 boss để demo trọn flow, nhưng nếu có thêm thời gian em muốn bổ sung thêm enemy behavior, boss phase và nhiều pattern đạn hơn. Một số script gameplay chính vẫn còn khá lớn vì em ưu tiên ổn định runtime và gamefeel trước, sau đó mới tách nhỏ tiếp để hạn chế god class và giúp code dễ bảo trì hơn.
 
 ## Third-party Assets / Tools
 
