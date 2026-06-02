@@ -1,266 +1,241 @@
 # SpiritBombTest_HoNgocThai
 
-## 1. Giới thiệu
+Đây là bài làm technical test Unity Developer của SpiritBomb. Game là dạng bắn máy bay 2D cuộn dọc, làm bằng Unity `2022.3.62f2` và build chính cho Android. Người chơi kéo máy bay để né đạn, bắn enemy theo từng wave, dùng thêm tên lửa, khiên và máy bay hỗ trợ để qua màn.
 
-`SpiritBombTest_HoNgocThai` là game bắn máy bay 2D dạng vertical-scrolling được làm bằng Unity `2022.3.62f2` cho bài test Unity Developer của SpiritBomb. Người chơi điều khiển máy bay chính, né đạn và tiêu diệt các đợt enemy theo wave, dùng các boost như tên lửa, khiên và máy bay hỗ trợ để vượt qua màn chơi. Project tập trung vào gameplay hoàn chỉnh, cảm giác va chạm rõ, hiệu ứng nổ, âm thanh, rung Android, UI/HUD dễ đọc và luồng chơi từ menu đến combat.
+Mục tiêu của mình là làm một bản nhỏ nhưng chơi được trọn flow: mở game, vào menu, chọn level, chơi combat, thắng/thua, lưu tiến trình và có cảm giác va chạm/hiệu ứng/âm thanh tương đối rõ.
 
-## 2. Thông tin project
+## Thông Tin Cơ Bản
 
-- Engine: Unity `2022.3.62f2`
-- Ngôn ngữ code: C#
-- Target chính: Android
-- Render pipeline: Built-in/Unity UI 2D
-- Scene mở đầu để test: `Assets/Scenes/BootLoader.unity`
-- APK build: `LogicTest_SpiritBomb_HoNgocThai.apk` ở thư mục root của project
-- Save data: PlayerPrefs JSON, schema hiện tại `saveSchemaVersion = 5`
+- Unity version: `2022.3.62f2`
+- Platform chính: Android
+- Code: C#
+- Scene bắt đầu để test: `Assets/Scenes/BootLoader.unity`
+- File APK đã build: `LogicTest_SpiritBomb_HoNgocThai.apk`
+- Save data: PlayerPrefs dạng JSON, schema hiện tại là `5`
 
-## 3. Cách mở và chạy project
+## Cách Chạy Project
 
-1. Clone hoặc tải project về máy.
-2. Mở Unity Hub.
-3. Chọn Unity version `2022.3.62f2`.
-4. Add project tại thư mục chứa `Assets`, `Packages`, `ProjectSettings`.
-5. Mở scene `Assets/Scenes/BootLoader.unity`.
-6. Bấm Play để chạy flow đầy đủ:
-   - `BootLoader -> Loading -> Menu`
-   - `Menu -> SelectLevel`
-   - `SelectLevel -> Loading -> GamePlay`
+Mở project bằng Unity Hub với đúng version `2022.3.62f2`. Sau khi Unity import xong, mở scene:
 
-Nếu muốn build Android:
+```text
+Assets/Scenes/BootLoader.unity
+```
 
-1. Vào `File > Build Settings`.
-2. Chọn platform `Android`.
-3. Đảm bảo các scene trong Build Settings gồm:
-   - `BootLoader`
-   - `Loading`
-   - `Menu`
-   - `SelectLevel`
-   - `GamePlay`
-4. Bấm `Build` hoặc `Build And Run`.
+Bấm Play từ scene này để chạy đúng luồng game:
 
-## 4. Điều khiển
+```text
+BootLoader -> Loading -> Menu -> SelectLevel -> Loading -> GamePlay
+```
 
-### Android
+Nếu build Android, vào `File > Build Settings`, chọn Android và kiểm tra Build Settings có đủ các scene:
 
-- Chạm và kéo trên màn hình để di chuyển máy bay.
-- Máy bay tự bắn đạn thường sau khi vào combat.
-- Bấm icon tên lửa để bật boost missile.
-- Bấm icon máy bay hỗ trợ để gọi support plane.
-- Bấm icon khiên để bật shield.
-- Bấm pause ở góc phải để tạm dừng, retry hoặc về menu.
+```text
+BootLoader
+Loading
+Menu
+SelectLevel
+GamePlay
+```
 
-### Unity Editor
+Sau đó có thể dùng `Build` hoặc `Build And Run`.
 
-- Giữ chuột trái và kéo để di chuyển máy bay.
-- Các nút UI dùng chuột để click.
-- `Escape` được dùng ở một số scene/panel để back hoặc xử lý pause tùy trạng thái hiện tại.
+## Điều Khiển
 
-## 5. Nội dung đã làm được
+Trên điện thoại, chạm và kéo để di chuyển máy bay. Máy bay sẽ tự bắn sau khi bắt đầu màn chơi.
 
-### Core gameplay
+Các nút boost nằm bên phải màn hình gameplay:
 
-- Máy bay người chơi di chuyển mượt bằng touch/mouse.
-- Cơ chế bắn tự động bằng bullet pool.
-- Boost missile, shield và support plane.
-- Enemy spawn theo wave data.
-- Có va chạm giữa player, enemy, projectile, item và boss.
-- Có máu player, máu boss, score, hit counter, win và lose state.
-- Có save-me popup khi player thua và đủ crystal.
-- Có end-game result cho thắng/thua, gold, diamond, kill rate, score và best score.
+- Tên lửa: bật missile boost.
+- Máy bay hỗ trợ: gọi 2 support plane.
+- Khiên: bật shield bảo vệ.
+- Pause: tạm dừng, retry hoặc về menu.
 
-### Level và wave
+Khi chạy trong Unity Editor có thể giữ chuột trái và kéo để giả lập thao tác touch.
 
-- Có 3 level gameplay được cấu hình bằng ScriptableObject:
-  - `Assets/Resources/Config/Gameplay/Levels/Level1.asset`
-  - `Assets/Resources/Config/Gameplay/Levels/Level2.asset`
-  - `Assets/Resources/Config/Gameplay/Levels/Level3.asset`
-- Mỗi level có energy cost riêng để vào màn.
-- Wave được cấu hình data-driven qua `LevelConfigSO`.
-- Các kiểu di chuyển enemy đang hỗ trợ:
-  - Đi thẳng xuống
-  - Follow path
-  - Formation hold
-  - Formation sine
-  - Formation circle
-  - Formation diagonal hold
-- Level 2 đã được chỉnh để wave sine rõ hơn, diagonal song song dễ nhìn hơn và đội hình vòng tròn giãn hơn.
+## Những Phần Đã Làm
 
-### Enemy, boss và plane
+### Gameplay Chính
 
-- Enemy thường: 2 loại
+- Máy bay chính di chuyển bằng touch/mouse.
+- Bắn đạn tự động bằng object pool.
+- Enemy xuất hiện theo wave.
+- Có va chạm giữa player, enemy, đạn, item và boss.
+- Có máu player, thanh máu boss, score, hit counter.
+- Có trạng thái thắng, thua và popup kết quả cuối màn.
+- Có popup save me khi thua và còn đủ crystal.
+- Có item/boost trong trận: missile, shield, support.
+
+### Level
+
+Hiện project có 3 level gameplay thật, cấu hình bằng ScriptableObject:
+
+```text
+Assets/Resources/Config/Gameplay/Levels/Level1.asset
+Assets/Resources/Config/Gameplay/Levels/Level2.asset
+Assets/Resources/Config/Gameplay/Levels/Level3.asset
+```
+
+Mỗi level có energy cost riêng. Khi chọn level, nút Fight sẽ hiển thị số energy cần dùng. Nếu không đủ energy thì không cho vào màn.
+
+Wave trong level được đọc từ `LevelConfigSO`, không đặt cứng hết trong scene. Các kiểu movement đang dùng gồm đi thẳng, follow path, giữ đội hình, sine, vòng tròn và đường chéo. Level 2 đã được chỉnh lại để các wave dễ nhìn hơn, nhất là wave sine và đội hình vòng tròn.
+
+### Enemy, Boss Và Plane
+
+Trong `EnemyCatalog` hiện có:
+
+- 2 enemy thường:
   - `Enemy1` / Basic
   - `Enemy2` / Heavy
-- Boss: 1 loại
+- 1 boss:
   - `Boss1`
-- Tổng combat type trong `EnemyCatalog`: 3 loại gồm 2 enemy thường và 1 boss.
-- Plane chính: 1 cấu hình máy bay người chơi
-  - `Assets/Resources/Config/Planes/Plane1.asset`
-- Support plane: 1 sprite/config hỗ trợ nằm trong cùng `Plane1.asset`.
-- Boost support hiện gọi 2 máy bay phụ trợ trong gameplay.
 
-### Upgrade và progression
+Về phía người chơi:
 
-- Có upgrade máy bay chính bằng gold/crystal.
-- Có stat Attack, Defend, Energy và chỉ số cộng thêm khi nâng cấp.
-- Có upgrade item/boost:
-  - Missile
-  - Support/Reinforce
-  - Shield
-- Có hệ thống star theo level.
-- Có high score theo level.
-- Có tổng điểm cao nhất tính từ danh sách high score.
-- Có dữ liệu mặc định cho lần chơi đầu để test nhanh trên Android.
+- 1 plane chính: `Plane1`
+- 1 sprite support plane nằm chung trong config `Plane1.asset`
+- Boost support sẽ gọi 2 máy bay nhỏ hỗ trợ bắn
 
-### UI/HUD
+Config chính nằm ở:
 
-- Menu chính có setting, upgrade plane, upgrade boost và chọn level.
-- Select Level hiển thị star, level info và energy cost trên nút Fight.
-- Gameplay HUD hiển thị:
-  - Máu player
-  - Score
-  - Hit counter
-  - Số lượng boost rocket/support/shield
-  - Pause button
-  - Boss health bar khi boss xuất hiện
-- UI boost cập nhật số lượng ngay sau khi dùng bằng callback.
-- Popup thiếu item trong gameplay có nút đóng.
-- Settings sound/vibration dùng toggle on/off mới ở menu và pause panel.
+```text
+Assets/Resources/Config/GameConfigDatabase.asset
+Assets/Resources/Config/Planes/Plane1.asset
+Assets/Resources/Config/Gameplay/EnemyCatalog.asset
+```
 
-### Game feel và polish
+### Upgrade Và Lưu Tiến Trình
 
-- Có hiệu ứng nổ enemy/boss.
-- Có hiệu ứng shield, rocket, support, item pickup.
-- Có âm thanh menu, gameplay, button, shield, win và game over.
-- Có rung Android qua service `Vibration`.
-- Có background scrolling trong gameplay.
-- Có loading scene riêng giữa các luồng chính.
+Game có upgrade máy bay và upgrade boost. Máy bay có các chỉ số attack, defend, energy và tốc độ bắn. Boost có upgrade riêng cho missile, support và shield.
 
-### Save/load
+Dữ liệu lưu gồm:
 
-- Save chính dùng JSON trong PlayerPrefs qua `SaveController`.
-- Có service tách riêng cho:
-  - Inventory: gold, crystal, energy, item boost.
-  - Progress: star, high score, level complete.
-  - Settings: sound, vibration, control.
-  - Upgrade: plane và boost level.
-- Đã bỏ các field PlayerPrefs dư không còn dùng như `timeX2Coin`, `timeSaveX2Coin`, `controlType`, `totalHighScore`.
+- Gold, crystal, energy
+- Số lượng rocket, shield, support
+- Level đã hoàn thành
+- Star từng level
+- High score từng level
+- Level upgrade của plane và boost
+- Setting sound/vibration
 
-## 6. Cấu trúc project
+Phần save đã được dọn lại để bỏ các field không dùng nữa như `timeX2Coin`, `timeSaveX2Coin`, `controlType` và `totalHighScore`.
+
+### UI Và Âm Thanh
+
+Các màn chính đã có UI:
+
+- Menu
+- Setting popup
+- Upgrade plane
+- Upgrade boost
+- Select level
+- Gameplay HUD
+- Pause popup
+- Win/Lose result
+
+Gameplay HUD có máu player, score, hit, boost count và boss HP khi boss xuất hiện. Số lượng boost được cập nhật ngay sau khi dùng.
+
+Âm thanh đã gắn cho menu, gameplay, click button, shield, win và game over. Android vibration cũng đã thêm qua script `Vibration`, dùng theo setting của người chơi.
+
+## Cấu Trúc Project
 
 ```text
 Assets/
-  AdvancedPlayerPrefsWindow/      Tool xem/chỉnh PlayerPrefs trong Editor
-  Animation/                      Animator Controller và AnimationClip dùng cho UI/gameplay
-  Editor/                         Editor audit/tool hỗ trợ kiểm tra scene
-  FX/                             Particle, material và prefab hiệu ứng
+  AdvancedPlayerPrefsWindow/      Tool để xem/chỉnh PlayerPrefs trong Editor
+  Animation/                      AnimationClip và Animator Controller
+  Editor/                         Một số tool audit scene dùng trong quá trình dọn project
+  FX/                             Hiệu ứng nổ, shield, particle, material
   Font/                           Font dùng cho UI
-  Prefabs/                        Prefab dùng chung như GameConfigService, Enemy1, Level1
+  Prefabs/                        Prefab dùng chung
   Resources/
-    Config/                       ScriptableObject config chính
-      GameConfigDatabase.asset    Database gom plane, item, enemy, path, level
+    Config/                       Toàn bộ config ScriptableObject chính
+      GameConfigDatabase.asset
       Gameplay/
-        EnemyCatalog.asset        Danh sách enemy/boss
-        Levels/                   Level1, Level2, Level3
-        PathData.asset            Path data
-        PathData2.asset           Formation path data
+        EnemyCatalog.asset
+        Levels/
+        PathData.asset
+        PathData2.asset
       Items/
-        ItemUpgradeConfig.asset   Config upgrade boost
       Planes/
-        Plane1.asset              Config plane chính và support plane sprite
-    *.prefab                      Prefab runtime load bằng Resources
+    *.prefab                      Prefab runtime load qua Resources
   Scenes/
-    BootLoader.unity              Scene đầu tiên để khởi tạo service
-    Loading.unity                 Scene loading trung gian
-    Menu.unity                    Main menu, setting, upgrade
-    SelectLevel.unity             Chọn màn chơi
-    GamePlay.unity                Gameplay combat
+    BootLoader.unity
+    Loading.unity
+    Menu.unity
+    SelectLevel.unity
+    GamePlay.unity
   Script/
-    Bootstrap/                    BootLoader và lifecycle DontDestroyOnLoad
-    Config/                       ScriptableObject model và GameConfigService
+    Bootstrap/                    Boot flow và lifecycle
+    Config/                       ScriptableObject config + GameConfigService
     Gameplay/
-      Boss/                       Logic boss
-      Core/                       GameManager, WaveManager, difficulty, event listener
-      Enemies/                    EnemyControl và drop rules
-      Items/                      Item pickup
-      Map/                        Scroll map/path
-      ObjectPooling/              Pool/factory runtime
-      Player/                     Player plane, support plane, damage rules
-      Projectiles/                Bullet, rocket, enemy projectile
-    SaveSystem/                   PlayerPrefs JSON save/load
-    Services/                     Service lớp giữa cho scene flow, inventory, progress, settings, upgrade
+      Boss/
+      Core/
+      Enemies/
+      Items/
+      Map/
+      ObjectPooling/
+      Player/
+      Projectiles/
+    SaveSystem/                   Save/load PlayerPrefs JSON
+    Services/                     Service cho inventory, progress, setting, scene flow
     State/                        GameState và GameSessionState
-    UI/
-      Common/                     Popup, settings, common panel
-      Gameplay/                   Pause và gameplay HUD
-      GameResult/                 Win/lose result
-      Menu/                       Menu, select level, upgrade UI
-    Utilities/                    Sound, vibration, constants, singleton, helpers
-  Sound/                          Nhạc nền và sound effects
-  TextMesh Pro/                   TextMeshPro resources
+    UI/                           UI Menu, Gameplay, Result, Common
+    Utilities/                    Sound, vibration, constants, helper
+  Sound/                          Music và sound effects
+  TextMesh Pro/
   UI/                             Sprite, texture, prefab UI
-Packages/                         Unity package manifest
-ProjectSettings/                  Unity project settings
+Packages/
+ProjectSettings/
 LogicTest_SpiritBomb_HoNgocThai.apk
 [SB] Unity Technical Test.pdf
 ```
 
-## 7. Kiến trúc và quyết định kỹ thuật
+## Một Số Điểm Code Đã Dọn
 
-- `BootLoader` là điểm vào chính để khởi tạo các service dùng chung.
-- `SceneFlowService` gom luồng chuyển scene để tránh gọi `SceneManager.LoadScene` rải rác.
-- `GameConfigService` đọc dữ liệu từ `GameConfigDatabaseSO` và các ScriptableObject con.
-- `WaveManager` đọc `LevelConfigSO` để spawn enemy theo wave thay vì hardcode toàn bộ trong scene.
-- `ObjectPooling` và `GameplayPoolFactory` đảm bảo object preload inactive, tránh lỗi projectile tự chạy khi vừa vào game.
-- `GameState` giữ wrapper tương thích cho code cũ, còn một phần dữ liệu runtime được gom qua `GameSessionState`.
-- Save data được tách qua service để UI/gameplay không truy cập PlayerPrefs trực tiếp quá nhiều.
+Trong lúc hoàn thiện bài, mình có dọn lại một số phần để project dễ đọc hơn:
 
-## 8. Known issues / điểm còn có thể cải thiện
+- Gom chuyển scene vào `SceneFlowService`.
+- Dùng `BootLoader` làm điểm khởi tạo service chính.
+- Đưa config gameplay về ScriptableObject để dễ chỉnh plane, enemy, level và wave.
+- Sửa pool để object preload luôn inactive, tránh lỗi đạn/tên lửa tự chạy khi vừa vào game.
+- Tách bớt save/progress/settings qua service thay vì gọi PlayerPrefs rải rác.
+- Dọn reference thừa, SDK không dùng, cache build và file tạm trước khi đưa lên GitHub.
 
-- Project hiện có APK ở root theo yêu cầu nộp source, chưa có thư mục `Build/` riêng.
-- Chưa kèm video gameplay trong repository.
-- Một số class gameplay lớn vẫn có thể tách nhỏ thêm nếu có thêm thời gian, đặc biệt `MyPlaneController`, `EnemyControl` và `GamePlayEventListener`.
-- Một số asset UI/FX là asset pack đã được giữ lại vì còn dùng trong scene/prefab, nên project vẫn có nhiều sprite/prefab phục vụ giao diện.
+## Known Issues
 
-## 9. Third-party assets, tools và credits
+- APK hiện đang để ở root project theo yêu cầu gửi kèm, chưa tách riêng vào thư mục `Build/`.
+- Chưa kèm video gameplay trong repo.
+- Một vài script gameplay vẫn còn khá dài, ví dụ `MyPlaneController`, `EnemyControl`, `GamePlayEventListener`. Mình đã dọn những phần ảnh hưởng trực tiếp đến runtime trước, nhưng nếu có thêm thời gian thì đây là phần nên tách tiếp.
+- Một số asset pack UI/FX vẫn giữ lại vì còn được scene hoặc prefab tham chiếu.
 
-Các tài nguyên/tiện ích bên thứ ba còn trong project:
+## Third-party Assets / Tools
 
-- DOTween/Demigiant: dùng cho tween animation trong UI/gameplay.
-- TextMeshPro: dùng cho text rendering.
-- AdvancedPlayerPrefsWindow: tool Editor để kiểm tra PlayerPrefs.
-- GUI Pro-SurvivalClean / PackUI: dùng cho nhiều sprite/prefab UI.
-- Font assets:
-  - NEXON Football Gothic
-  - Ubuntu
-  - Electrolize
-  - LiberationSans SDF từ TextMeshPro
-- Sound effects/music trong `Assets/Sound` và `Assets/Sound/sound effects`.
+Project có dùng một số asset/tool có sẵn:
 
-Ghi chú: phần asset pack/font/audio nên được kiểm tra lại license gốc nếu project dùng ngoài phạm vi technical test.
+- DOTween/Demigiant cho tween animation.
+- TextMeshPro cho text.
+- AdvancedPlayerPrefsWindow để kiểm tra PlayerPrefs trong Editor.
+- GUI Pro-SurvivalClean / PackUI cho nhiều sprite và prefab UI.
+- Một số font như NEXON Football Gothic, Ubuntu, Electrolize và LiberationSans SDF.
+- Một số sound effects/music trong `Assets/Sound`.
 
-## 10. AI Usage Declaration
+Các asset này được dùng cho phạm vi technical test. Nếu dùng project cho mục đích khác thì nên kiểm tra lại license gốc của từng asset/audio/font.
 
-AI tools đã được sử dụng:
+## AI Usage Declaration
 
-- ChatGPT/Codex: hỗ trợ rà soát code, refactor có kiểm soát, debug lỗi runtime, dọn project, viết README và chuẩn bị repository.
+Mình có sử dụng ChatGPT/Codex trong quá trình làm bài.
 
-Các phần có AI hỗ trợ đáng kể:
+Các phần có AI hỗ trợ:
 
-- Chuẩn hóa flow scene qua `SceneFlowService`.
-- Rà và clean một số script UI/gameplay.
-- Sửa contract object pool để object preload inactive.
-- Hỗ trợ chuyển một phần config gameplay sang hướng data-driven bằng ScriptableObject.
-- Hỗ trợ sửa save data PlayerPrefs và loại bỏ field dư.
-- Hỗ trợ rà third-party SDK/tên template còn sót.
-- Hỗ trợ viết tài liệu README này.
+- Rà code và tìm lỗi logic trong gameplay/UI.
+- Gợi ý và hỗ trợ refactor một số phần như scene flow, object pool, save data và config ScriptableObject.
+- Hỗ trợ tìm reference thừa, SDK cũ, file cache, file tạm trước khi đưa source lên GitHub.
+- Hỗ trợ viết README.
 
-Các phần do người thực hiện trực tiếp kiểm tra và quyết định:
+Các phần mình trực tiếp quyết định và test:
 
-- Chọn visual, sprite, audio, UI layout và test cảm giác chơi trong Unity Editor/Android Simulator.
-- Quyết định scope feature cần giữ hoặc xóa.
-- Kiểm thử thủ công các luồng gameplay, menu, upgrade, select level và boost.
-- Chọn APK build cuối để nộp.
+- Chọn sprite, âm thanh, UI layout và cảm giác gameplay.
+- Test các flow chính trong Unity: boot, menu, select level, gameplay, win/lose, upgrade và boost.
+- Điều chỉnh wave, boss HP, energy cost, vibration, sound và save data.
+- Build APK cuối để nộp.
 
-Reflection:
-
-AI giúp tăng tốc quá trình rà code, tìm reference và sửa các lỗi lặp lại trong nhiều scene. AI hữu ích nhất ở các phần clean code, kiểm tra serialized reference, chuẩn hóa service và viết tài liệu. Tuy vậy, các lỗi liên quan cảm giác chơi, UI bị che layer hoặc gameplay wave vẫn cần kiểm tra trực tiếp trong Unity vì chỉ đọc code không đủ. Tôi dùng AI như công cụ hỗ trợ kỹ thuật, còn quyết định cuối cùng dựa trên việc test project thật trong Editor và build Android.
+AI giúp mình làm nhanh hơn ở các việc rà soát và sửa lỗi lặp lại, nhất là khi phải kiểm tra nhiều scene và nhiều reference trong Unity. Tuy vậy các phần cảm giác chơi, UI có bị che hay không, wave có rõ hay không thì vẫn phải mở Unity lên test trực tiếp mới chắc. Mình xem AI như công cụ hỗ trợ code/debug, còn quyết định cuối cùng dựa trên việc chạy project thật.
