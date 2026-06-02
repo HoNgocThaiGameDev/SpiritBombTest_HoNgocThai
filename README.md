@@ -1,8 +1,8 @@
 # SpiritBombTest_HoNgocThai
 
-Đây là bài làm technical test Unity Developer của SpiritBomb. Game là dạng bắn máy bay 2D cuộn dọc, làm bằng Unity `2022.3.62f2` và build chính cho Android. Người chơi kéo máy bay để né đạn, bắn enemy theo từng wave, dùng thêm các vật phẩm hỗ trợ như tên lửa, khiên và máy bay phụ trợ để qua màn.
+Game là dạng bắn máy bay 2D cuộn dọc, làm bằng Unity `2022.3.62f2` và build chính cho Android. Người chơi kéo máy bay để né đạn, bắn enemy theo từng wave, dùng thêm các vật phẩm hỗ trợ như tên lửa, khiên và máy bay phụ trợ để qua màn.
 
-Mục tiêu của mình là làm một bản nhỏ nhưng chơi được trọn flow: mở game, vào menu, chọn level, chơi combat, thắng/thua, lưu tiến trình và có cảm giác va chạm/hiệu ứng/âm thanh tương đối rõ.
+Mục tiêu của em là làm một bản nhỏ nhưng chơi được trọn flow: mở game, vào menu, chọn level, chơi combat, thắng/thua, lưu tiến trình và có cảm giác va chạm/hiệu ứng/âm thanh tương đối rõ.
 
 ## Thông Tin Cơ Bản
 
