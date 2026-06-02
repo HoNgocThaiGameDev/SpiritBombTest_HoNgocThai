@@ -193,7 +193,7 @@ LogicTest_SpiritBomb_HoNgocThai.apk
 
 ## Known Issues
 
-Vì em phải dành thời gian tìm hiểu gameplay của dòng space shooter, đặc biệt là nhịp wave, cảm giác bắn, boss và các vật phẩm hỗ trợ, nên phần UI chưa kịp refactor lại rõ ràng như mong muốn. Hiện tại các panel, dialog và popup vẫn đang được quản lý bằng nhiều script riêng theo từng màn. Nếu có thêm thời gian, em muốn tách lại cấu trúc UI clean hơn, có framework nhỏ để quản lý dialog/popup tập trung hơn, ví dụ popup stack, base dialog, open/close transition chung và cách truyền data rõ ràng hơn.
+Vì em phải dành thời gian tìm hiểu gameplay của dòng space shooter, đặc biệt là nhịp wave, cảm giác bắn, boss và các vật phẩm hỗ trợ, nên phần UI chưa kịp refactor lại rõ ràng như mong muốn. Hiện tại các panel, dialog và popup vẫn đang được quản lý bằng nhiều script riêng theo từng màn. Nếu có thêm thời gian, em muốn tách lại cấu trúc UI clean hơn, có framework nhỏ để quản lý dialog/popup tập trung hơn, ví dụ popup stack, base dialog và open/close transition chung.
 
 ## Third-party Assets / Tools
 
